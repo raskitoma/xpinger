@@ -16,8 +16,12 @@ xpinger is an isolated network monitoring stack utilizing Python, InfluxDB, and 
 
 The entire stack is fully pre-configured! To start monitoring your devices, simply follow these two steps:
 
-1. **Update `devices.csv`**:
-   Open the `devices.csv` file and define the targets you want to ping. Just ensure you keep the CSV header completely intact (`Group,Location,Hostname,IP`).
+1. **Prepare `devices.csv`**:
+   Copy the provided sample file to create your local copy:
+   ```bash
+   cp devices_sample.csv devices.csv
+   ```
+   Open `devices.csv` and define the targets you want to ping. Ensure you keep the CSV header completely intact (`Group,Location,Hostname,IP`).
 
 2. **Run Deploy**:
    From your terminal, run the deployment script:
