@@ -360,7 +360,7 @@
                         "type": "influxdb",
                         "uid": "dff7v8js3usqoa"
                     },
-                    "query": "from(bucket: \"warehouse\")\r\n  |> range(start: -10m)\r\n  |> filter(fn: (r) => r._measurement == \"ping_metrics\")\r\n  |> filter(fn: (r) => r.device == \"${Devices_1}\")\r\n  |> last()\r\n  |> pivot(rowKey:[\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\r\n  |> group()\r\n  |> map(fn: (r) => ({\r\n      _time: r._time,\r\n      latency: r.ms,\r\n      device_group: r.group,\r\n      hostname: r.device,\r\n      current_status: r.status,\r\n      location: r.location\r\n    }))\r\n  |> keep(columns: [\"_time\", \"latency\", \"device_group\", \"hostname\", \"current_status\", \"location\"])\r\n  |> yield(name: \"status\")",
+                    "query": "from(bucket: \"xpinger\")\r\n  |> range(start: -10m)\r\n  |> filter(fn: (r) => r._measurement == \"ping_metrics\")\r\n  |> filter(fn: (r) => r.device == \"${Devices_1}\")\r\n  |> last()\r\n  |> pivot(rowKey:[\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\r\n  |> group()\r\n  |> map(fn: (r) => ({\r\n      _time: r._time,\r\n      latency: r.ms,\r\n      device_group: r.group,\r\n      hostname: r.device,\r\n      current_status: r.status,\r\n      location: r.location\r\n    }))\r\n  |> keep(columns: [\"_time\", \"latency\", \"device_group\", \"hostname\", \"current_status\", \"location\"])\r\n  |> yield(name: \"status\")",
                     "refId": "A"
                 }
             ],
@@ -457,7 +457,7 @@
                         "type": "influxdb",
                         "uid": "dff7v8js3usqoa"
                     },
-                    "query": "import \"date\"\r\n\r\nstopTime = date.truncate(t: now(), unit: 1m)\r\nstartTime = date.add(d: -11m, to: stopTime)\r\n\r\nfrom(bucket: \"warehouse\")\r\n  |> range(start: startTime, stop: stopTime)\r\n  |> filter(fn: (r) => r._measurement == \"ping_metrics\")\r\n  |> filter(fn: (r) => r.device == \"${Devices_1}\")\r\n  |> filter(fn: (r) => r._field == \"ms\")\r\n  |> aggregateWindow(every: 1m, fn: last, createEmpty: true)\r\n  |> fill(value: 0.0)\r\n  // Drop ALL tags (device, host, etc.) so only _time and _value remain\r\n  |> drop(columns: [\"_measurement\", \"device\", \"host\", \"_field\", \"group\", \"ip\", \"location\", \"status\", \"_start\", \"_stop\"]) \r\n  |> group() \r\n  |> tail(n: 10)\r\n  |> yield(name: \"history_data\")",
+                    "query": "import \"date\"\r\n\r\nstopTime = date.truncate(t: now(), unit: 1m)\r\nstartTime = date.add(d: -11m, to: stopTime)\r\n\r\nfrom(bucket: \"xpinger\")\r\n  |> range(start: startTime, stop: stopTime)\r\n  |> filter(fn: (r) => r._measurement == \"ping_metrics\")\r\n  |> filter(fn: (r) => r.device == \"${Devices_1}\")\r\n  |> filter(fn: (r) => r._field == \"ms\")\r\n  |> aggregateWindow(every: 1m, fn: last, createEmpty: true)\r\n  |> fill(value: 0.0)\r\n  // Drop ALL tags (device, host, etc.) so only _time and _value remain\r\n  |> drop(columns: [\"_measurement\", \"device\", \"host\", \"_field\", \"group\", \"ip\", \"location\", \"status\", \"_start\", \"_stop\"]) \r\n  |> group() \r\n  |> tail(n: 10)\r\n  |> yield(name: \"history_data\")",
                     "refId": "A"
                 }
             ],
@@ -778,7 +778,7 @@
                         "type": "influxdb",
                         "uid": "dff7v8js3usqoa"
                     },
-                    "query": "from(bucket: \"warehouse\")\r\n  |> range(start: -10m)\r\n  |> filter(fn: (r) => r._measurement == \"ping_metrics\")\r\n  |> filter(fn: (r) => r.device == \"${Devices_2}\")\r\n  |> last()\r\n  |> pivot(rowKey:[\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\r\n  |> group()\r\n  |> map(fn: (r) => ({\r\n      _time: r._time,\r\n      latency: r.ms,\r\n      device_group: r.group,\r\n      hostname: r.device,\r\n      current_status: r.status,\r\n      location: r.location\r\n    }))\r\n  |> keep(columns: [\"_time\", \"latency\", \"device_group\", \"hostname\", \"current_status\", \"location\"])\r\n  |> yield(name: \"status\")",
+                    "query": "from(bucket: \"xpinger\")\r\n  |> range(start: -10m)\r\n  |> filter(fn: (r) => r._measurement == \"ping_metrics\")\r\n  |> filter(fn: (r) => r.device == \"${Devices_2}\")\r\n  |> last()\r\n  |> pivot(rowKey:[\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\r\n  |> group()\r\n  |> map(fn: (r) => ({\r\n      _time: r._time,\r\n      latency: r.ms,\r\n      device_group: r.group,\r\n      hostname: r.device,\r\n      current_status: r.status,\r\n      location: r.location\r\n    }))\r\n  |> keep(columns: [\"_time\", \"latency\", \"device_group\", \"hostname\", \"current_status\", \"location\"])\r\n  |> yield(name: \"status\")",
                     "refId": "A"
                 }
             ],
@@ -875,7 +875,7 @@
                         "type": "influxdb",
                         "uid": "dff7v8js3usqoa"
                     },
-                    "query": "import \"date\"\r\n\r\nstopTime = date.truncate(t: now(), unit: 1m)\r\nstartTime = date.add(d: -11m, to: stopTime)\r\n\r\nfrom(bucket: \"warehouse\")\r\n  |> range(start: startTime, stop: stopTime)\r\n  |> filter(fn: (r) => r._measurement == \"ping_metrics\")\r\n  |> filter(fn: (r) => r.device == \"${Devices_2}\")\r\n  |> filter(fn: (r) => r._field == \"ms\")\r\n  |> aggregateWindow(every: 1m, fn: last, createEmpty: true)\r\n  |> fill(value: 0.0)\r\n  // Drop ALL tags (device, host, etc.) so only _time and _value remain\r\n  |> drop(columns: [\"_measurement\", \"device\", \"host\", \"_field\", \"group\", \"ip\", \"location\", \"status\", \"_start\", \"_stop\"]) \r\n  |> group() \r\n  |> tail(n: 10)\r\n  |> yield(name: \"history_data\")",
+                    "query": "import \"date\"\r\n\r\nstopTime = date.truncate(t: now(), unit: 1m)\r\nstartTime = date.add(d: -11m, to: stopTime)\r\n\r\nfrom(bucket: \"xpinger\")\r\n  |> range(start: startTime, stop: stopTime)\r\n  |> filter(fn: (r) => r._measurement == \"ping_metrics\")\r\n  |> filter(fn: (r) => r.device == \"${Devices_2}\")\r\n  |> filter(fn: (r) => r._field == \"ms\")\r\n  |> aggregateWindow(every: 1m, fn: last, createEmpty: true)\r\n  |> fill(value: 0.0)\r\n  // Drop ALL tags (device, host, etc.) so only _time and _value remain\r\n  |> drop(columns: [\"_measurement\", \"device\", \"host\", \"_field\", \"group\", \"ip\", \"location\", \"status\", \"_start\", \"_stop\"]) \r\n  |> group() \r\n  |> tail(n: 10)\r\n  |> yield(name: \"history_data\")",
                     "refId": "A"
                 }
             ],
@@ -1196,7 +1196,7 @@
                         "type": "influxdb",
                         "uid": "dff7v8js3usqoa"
                     },
-                    "query": "from(bucket: \"warehouse\")\r\n  |> range(start: -10m)\r\n  |> filter(fn: (r) => r._measurement == \"ping_metrics\")\r\n  |> filter(fn: (r) => r.device == \"${Devices_3}\")\r\n  |> last()\r\n  |> pivot(rowKey:[\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\r\n  |> group()\r\n  |> map(fn: (r) => ({\r\n      _time: r._time,\r\n      latency: r.ms,\r\n      device_group: r.group,\r\n      hostname: r.device,\r\n      current_status: r.status,\r\n      location: r.location\r\n    }))\r\n  |> keep(columns: [\"_time\", \"latency\", \"device_group\", \"hostname\", \"current_status\", \"location\"])\r\n  |> yield(name: \"status\")",
+                    "query": "from(bucket: \"xpinger\")\r\n  |> range(start: -10m)\r\n  |> filter(fn: (r) => r._measurement == \"ping_metrics\")\r\n  |> filter(fn: (r) => r.device == \"${Devices_3}\")\r\n  |> last()\r\n  |> pivot(rowKey:[\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\r\n  |> group()\r\n  |> map(fn: (r) => ({\r\n      _time: r._time,\r\n      latency: r.ms,\r\n      device_group: r.group,\r\n      hostname: r.device,\r\n      current_status: r.status,\r\n      location: r.location\r\n    }))\r\n  |> keep(columns: [\"_time\", \"latency\", \"device_group\", \"hostname\", \"current_status\", \"location\"])\r\n  |> yield(name: \"status\")",
                     "refId": "A"
                 }
             ],
@@ -1293,7 +1293,7 @@
                         "type": "influxdb",
                         "uid": "dff7v8js3usqoa"
                     },
-                    "query": "import \"date\"\r\n\r\nstopTime = date.truncate(t: now(), unit: 1m)\r\nstartTime = date.add(d: -11m, to: stopTime)\r\n\r\nfrom(bucket: \"warehouse\")\r\n  |> range(start: startTime, stop: stopTime)\r\n  |> filter(fn: (r) => r._measurement == \"ping_metrics\")\r\n  |> filter(fn: (r) => r.device == \"${Devices_3}\")\r\n  |> filter(fn: (r) => r._field == \"ms\")\r\n  |> aggregateWindow(every: 1m, fn: last, createEmpty: true)\r\n  |> fill(value: 0.0)\r\n  // Drop ALL tags (device, host, etc.) so only _time and _value remain\r\n  |> drop(columns: [\"_measurement\", \"device\", \"host\", \"_field\", \"group\", \"ip\", \"location\", \"status\", \"_start\", \"_stop\"]) \r\n  |> group() \r\n  |> tail(n: 10)\r\n  |> yield(name: \"history_data\")",
+                    "query": "import \"date\"\r\n\r\nstopTime = date.truncate(t: now(), unit: 1m)\r\nstartTime = date.add(d: -11m, to: stopTime)\r\n\r\nfrom(bucket: \"xpinger\")\r\n  |> range(start: startTime, stop: stopTime)\r\n  |> filter(fn: (r) => r._measurement == \"ping_metrics\")\r\n  |> filter(fn: (r) => r.device == \"${Devices_3}\")\r\n  |> filter(fn: (r) => r._field == \"ms\")\r\n  |> aggregateWindow(every: 1m, fn: last, createEmpty: true)\r\n  |> fill(value: 0.0)\r\n  // Drop ALL tags (device, host, etc.) so only _time and _value remain\r\n  |> drop(columns: [\"_measurement\", \"device\", \"host\", \"_field\", \"group\", \"ip\", \"location\", \"status\", \"_start\", \"_stop\"]) \r\n  |> group() \r\n  |> tail(n: 10)\r\n  |> yield(name: \"history_data\")",
                     "refId": "A"
                 }
             ],
@@ -1614,7 +1614,7 @@
                         "type": "influxdb",
                         "uid": "dff7v8js3usqoa"
                     },
-                    "query": "from(bucket: \"warehouse\")\r\n  |> range(start: -10m)\r\n  |> filter(fn: (r) => r._measurement == \"ping_metrics\")\r\n  |> filter(fn: (r) => r.device == \"${Devices_4}\")\r\n  |> last()\r\n  |> pivot(rowKey:[\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\r\n  |> group()\r\n  |> map(fn: (r) => ({\r\n      _time: r._time,\r\n      latency: r.ms,\r\n      device_group: r.group,\r\n      hostname: r.device,\r\n      current_status: r.status,\r\n      location: r.location\r\n    }))\r\n  |> keep(columns: [\"_time\", \"latency\", \"device_group\", \"hostname\", \"current_status\", \"location\"])\r\n  |> yield(name: \"status\")",
+                    "query": "from(bucket: \"xpinger\")\r\n  |> range(start: -10m)\r\n  |> filter(fn: (r) => r._measurement == \"ping_metrics\")\r\n  |> filter(fn: (r) => r.device == \"${Devices_4}\")\r\n  |> last()\r\n  |> pivot(rowKey:[\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\r\n  |> group()\r\n  |> map(fn: (r) => ({\r\n      _time: r._time,\r\n      latency: r.ms,\r\n      device_group: r.group,\r\n      hostname: r.device,\r\n      current_status: r.status,\r\n      location: r.location\r\n    }))\r\n  |> keep(columns: [\"_time\", \"latency\", \"device_group\", \"hostname\", \"current_status\", \"location\"])\r\n  |> yield(name: \"status\")",
                     "refId": "A"
                 }
             ],
@@ -1711,7 +1711,7 @@
                         "type": "influxdb",
                         "uid": "dff7v8js3usqoa"
                     },
-                    "query": "import \"date\"\r\n\r\nstopTime = date.truncate(t: now(), unit: 1m)\r\nstartTime = date.add(d: -11m, to: stopTime)\r\n\r\nfrom(bucket: \"warehouse\")\r\n  |> range(start: startTime, stop: stopTime)\r\n  |> filter(fn: (r) => r._measurement == \"ping_metrics\")\r\n  |> filter(fn: (r) => r.device == \"${Devices_4}\")\r\n  |> filter(fn: (r) => r._field == \"ms\")\r\n  |> aggregateWindow(every: 1m, fn: last, createEmpty: true)\r\n  |> fill(value: 0.0)\r\n  // Drop ALL tags (device, host, etc.) so only _time and _value remain\r\n  |> drop(columns: [\"_measurement\", \"device\", \"host\", \"_field\", \"group\", \"ip\", \"location\", \"status\", \"_start\", \"_stop\"]) \r\n  |> group() \r\n  |> tail(n: 10)\r\n  |> yield(name: \"history_data\")",
+                    "query": "import \"date\"\r\n\r\nstopTime = date.truncate(t: now(), unit: 1m)\r\nstartTime = date.add(d: -11m, to: stopTime)\r\n\r\nfrom(bucket: \"xpinger\")\r\n  |> range(start: startTime, stop: stopTime)\r\n  |> filter(fn: (r) => r._measurement == \"ping_metrics\")\r\n  |> filter(fn: (r) => r.device == \"${Devices_4}\")\r\n  |> filter(fn: (r) => r._field == \"ms\")\r\n  |> aggregateWindow(every: 1m, fn: last, createEmpty: true)\r\n  |> fill(value: 0.0)\r\n  // Drop ALL tags (device, host, etc.) so only _time and _value remain\r\n  |> drop(columns: [\"_measurement\", \"device\", \"host\", \"_field\", \"group\", \"ip\", \"location\", \"status\", \"_start\", \"_stop\"]) \r\n  |> group() \r\n  |> tail(n: 10)\r\n  |> yield(name: \"history_data\")",
                     "refId": "A"
                 }
             ],
@@ -2032,7 +2032,7 @@
                         "type": "influxdb",
                         "uid": "dff7v8js3usqoa"
                     },
-                    "query": "from(bucket: \"warehouse\")\r\n  |> range(start: -10m)\r\n  |> filter(fn: (r) => r._measurement == \"ping_metrics\")\r\n  |> filter(fn: (r) => r.device == \"${Devices_5}\")\r\n  |> last()\r\n  |> pivot(rowKey:[\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\r\n  |> group()\r\n  |> map(fn: (r) => ({\r\n      _time: r._time,\r\n      latency: r.ms,\r\n      device_group: r.group,\r\n      hostname: r.device,\r\n      current_status: r.status,\r\n      location: r.location\r\n    }))\r\n  |> keep(columns: [\"_time\", \"latency\", \"device_group\", \"hostname\", \"current_status\", \"location\"])\r\n  |> yield(name: \"status\")",
+                    "query": "from(bucket: \"xpinger\")\r\n  |> range(start: -10m)\r\n  |> filter(fn: (r) => r._measurement == \"ping_metrics\")\r\n  |> filter(fn: (r) => r.device == \"${Devices_5}\")\r\n  |> last()\r\n  |> pivot(rowKey:[\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\r\n  |> group()\r\n  |> map(fn: (r) => ({\r\n      _time: r._time,\r\n      latency: r.ms,\r\n      device_group: r.group,\r\n      hostname: r.device,\r\n      current_status: r.status,\r\n      location: r.location\r\n    }))\r\n  |> keep(columns: [\"_time\", \"latency\", \"device_group\", \"hostname\", \"current_status\", \"location\"])\r\n  |> yield(name: \"status\")",
                     "refId": "A"
                 }
             ],
@@ -2129,7 +2129,7 @@
                         "type": "influxdb",
                         "uid": "dff7v8js3usqoa"
                     },
-                    "query": "import \"date\"\r\n\r\nstopTime = date.truncate(t: now(), unit: 1m)\r\nstartTime = date.add(d: -11m, to: stopTime)\r\n\r\nfrom(bucket: \"warehouse\")\r\n  |> range(start: startTime, stop: stopTime)\r\n  |> filter(fn: (r) => r._measurement == \"ping_metrics\")\r\n  |> filter(fn: (r) => r.device == \"${Devices_5}\")\r\n  |> filter(fn: (r) => r._field == \"ms\")\r\n  |> aggregateWindow(every: 1m, fn: last, createEmpty: true)\r\n  |> fill(value: 0.0)\r\n  // Drop ALL tags (device, host, etc.) so only _time and _value remain\r\n  |> drop(columns: [\"_measurement\", \"device\", \"host\", \"_field\", \"group\", \"ip\", \"location\", \"status\", \"_start\", \"_stop\"]) \r\n  |> group() \r\n  |> tail(n: 10)\r\n  |> yield(name: \"history_data\")",
+                    "query": "import \"date\"\r\n\r\nstopTime = date.truncate(t: now(), unit: 1m)\r\nstartTime = date.add(d: -11m, to: stopTime)\r\n\r\nfrom(bucket: \"xpinger\")\r\n  |> range(start: startTime, stop: stopTime)\r\n  |> filter(fn: (r) => r._measurement == \"ping_metrics\")\r\n  |> filter(fn: (r) => r.device == \"${Devices_5}\")\r\n  |> filter(fn: (r) => r._field == \"ms\")\r\n  |> aggregateWindow(every: 1m, fn: last, createEmpty: true)\r\n  |> fill(value: 0.0)\r\n  // Drop ALL tags (device, host, etc.) so only _time and _value remain\r\n  |> drop(columns: [\"_measurement\", \"device\", \"host\", \"_field\", \"group\", \"ip\", \"location\", \"status\", \"_start\", \"_stop\"]) \r\n  |> group() \r\n  |> tail(n: 10)\r\n  |> yield(name: \"history_data\")",
                     "refId": "A"
                 }
             ],
@@ -2156,14 +2156,14 @@
                     "type": "influxdb",
                     "uid": "dff7v8js3usqoa"
                 },
-                "definition": "import \"influxdata/influxdb/schema\"\r\n\r\nschema.tagValues(\r\n  bucket: \"warehouse\",\r\n  tag: \"device\",\r\n  predicate: (r) =>\r\n    r._measurement == \"ping_metrics\" and\r\n    r.group == \"1 Scanners\"\r\n)",
+                "definition": "import \"influxdata/influxdb/schema\"\r\n\r\nschema.tagValues(\r\n  bucket: \"xpinger\",\r\n  tag: \"device\",\r\n  predicate: (r) =>\r\n    r._measurement == \"ping_metrics\" and\r\n    r.group == \"1 Scanners\"\r\n)",
                 "hide": 2,
                 "includeAll": true,
                 "multi": true,
                 "name": "Devices_1",
                 "options": [],
                 "query": {
-                    "query": "import \"influxdata/influxdb/schema\"\r\n\r\nschema.tagValues(\r\n  bucket: \"warehouse\",\r\n  tag: \"device\",\r\n  predicate: (r) =>\r\n    r._measurement == \"ping_metrics\" and\r\n    r.group == \"1 Scanners\"\r\n)"
+                    "query": "import \"influxdata/influxdb/schema\"\r\n\r\nschema.tagValues(\r\n  bucket: \"xpinger\",\r\n  tag: \"device\",\r\n  predicate: (r) =>\r\n    r._measurement == \"ping_metrics\" and\r\n    r.group == \"1 Scanners\"\r\n)"
                 },
                 "refresh": 1,
                 "type": "query"
@@ -2180,14 +2180,14 @@
                     "type": "influxdb",
                     "uid": "dff7v8js3usqoa"
                 },
-                "definition": "import \"influxdata/influxdb/schema\"\r\n\r\nschema.tagValues(\r\n  bucket: \"warehouse\",\r\n  tag: \"device\",\r\n  predicate: (r) =>\r\n    r._measurement == \"ping_metrics\" and\r\n    r.group == \"2 Labelers\"\r\n)",
+                "definition": "import \"influxdata/influxdb/schema\"\r\n\r\nschema.tagValues(\r\n  bucket: \"xpinger\",\r\n  tag: \"device\",\r\n  predicate: (r) =>\r\n    r._measurement == \"ping_metrics\" and\r\n    r.group == \"2 Labelers\"\r\n)",
                 "hide": 2,
                 "includeAll": true,
                 "multi": true,
                 "name": "Devices_2",
                 "options": [],
                 "query": {
-                    "query": "import \"influxdata/influxdb/schema\"\r\n\r\nschema.tagValues(\r\n  bucket: \"warehouse\",\r\n  tag: \"device\",\r\n  predicate: (r) =>\r\n    r._measurement == \"ping_metrics\" and\r\n    r.group == \"2 Labelers\"\r\n)"
+                    "query": "import \"influxdata/influxdb/schema\"\r\n\r\nschema.tagValues(\r\n  bucket: \"xpinger\",\r\n  tag: \"device\",\r\n  predicate: (r) =>\r\n    r._measurement == \"ping_metrics\" and\r\n    r.group == \"2 Labelers\"\r\n)"
                 },
                 "refresh": 1,
                 "type": "query"
@@ -2204,7 +2204,7 @@
                     "type": "influxdb",
                     "uid": "dff7v8js3usqoa"
                 },
-                "definition": "import \"influxdata/influxdb/schema\"\r\n\r\nschema.tagValues(\r\n  bucket: \"warehouse\",\r\n  tag: \"device\",\r\n  predicate: (r) =>\r\n    r._measurement == \"ping_metrics\" and\r\n    r.group == \"3 Printers\"\r\n)",
+                "definition": "import \"influxdata/influxdb/schema\"\r\n\r\nschema.tagValues(\r\n  bucket: \"xpinger\",\r\n  tag: \"device\",\r\n  predicate: (r) =>\r\n    r._measurement == \"ping_metrics\" and\r\n    r.group == \"3 Printers\"\r\n)",
                 "description": "",
                 "hide": 2,
                 "includeAll": true,
@@ -2212,7 +2212,7 @@
                 "name": "Devices_3",
                 "options": [],
                 "query": {
-                    "query": "import \"influxdata/influxdb/schema\"\r\n\r\nschema.tagValues(\r\n  bucket: \"warehouse\",\r\n  tag: \"device\",\r\n  predicate: (r) =>\r\n    r._measurement == \"ping_metrics\" and\r\n    r.group == \"3 Printers\"\r\n)"
+                    "query": "import \"influxdata/influxdb/schema\"\r\n\r\nschema.tagValues(\r\n  bucket: \"xpinger\",\r\n  tag: \"device\",\r\n  predicate: (r) =>\r\n    r._measurement == \"ping_metrics\" and\r\n    r.group == \"3 Printers\"\r\n)"
                 },
                 "refresh": 1,
                 "type": "query"
@@ -2227,14 +2227,14 @@
                     "type": "influxdb",
                     "uid": "dff7v8js3usqoa"
                 },
-                "definition": "import \"influxdata/influxdb/schema\"\r\n\r\nschema.tagValues(\r\n  bucket: \"warehouse\",\r\n  tag: \"device\",\r\n  predicate: (r) =>\r\n    r._measurement == \"ping_metrics\" and\r\n    r.group == \"4 Infrastructure\"\r\n)",
+                "definition": "import \"influxdata/influxdb/schema\"\r\n\r\nschema.tagValues(\r\n  bucket: \"xpinger\",\r\n  tag: \"device\",\r\n  predicate: (r) =>\r\n    r._measurement == \"ping_metrics\" and\r\n    r.group == \"4 Infrastructure\"\r\n)",
                 "hide": 2,
                 "includeAll": true,
                 "multi": true,
                 "name": "Devices_4",
                 "options": [],
                 "query": {
-                    "query": "import \"influxdata/influxdb/schema\"\r\n\r\nschema.tagValues(\r\n  bucket: \"warehouse\",\r\n  tag: \"device\",\r\n  predicate: (r) =>\r\n    r._measurement == \"ping_metrics\" and\r\n    r.group == \"4 Infrastructure\"\r\n)"
+                    "query": "import \"influxdata/influxdb/schema\"\r\n\r\nschema.tagValues(\r\n  bucket: \"xpinger\",\r\n  tag: \"device\",\r\n  predicate: (r) =>\r\n    r._measurement == \"ping_metrics\" and\r\n    r.group == \"4 Infrastructure\"\r\n)"
                 },
                 "refresh": 1,
                 "type": "query"
@@ -2251,14 +2251,14 @@
                     "type": "influxdb",
                     "uid": "dff7v8js3usqoa"
                 },
-                "definition": "import \"influxdata/influxdb/schema\"\r\n\r\nschema.tagValues(\r\n  bucket: \"warehouse\",\r\n  tag: \"device\",\r\n  predicate: (r) =>\r\n    r._measurement == \"ping_metrics\" and\r\n    r.group == \"5 Cloud\"\r\n)",
+                "definition": "import \"influxdata/influxdb/schema\"\r\n\r\nschema.tagValues(\r\n  bucket: \"xpinger\",\r\n  tag: \"device\",\r\n  predicate: (r) =>\r\n    r._measurement == \"ping_metrics\" and\r\n    r.group == \"5 Cloud\"\r\n)",
                 "hide": 2,
                 "includeAll": true,
                 "multi": true,
                 "name": "Devices_5",
                 "options": [],
                 "query": {
-                    "query": "import \"influxdata/influxdb/schema\"\r\n\r\nschema.tagValues(\r\n  bucket: \"warehouse\",\r\n  tag: \"device\",\r\n  predicate: (r) =>\r\n    r._measurement == \"ping_metrics\" and\r\n    r.group == \"5 Cloud\"\r\n)"
+                    "query": "import \"influxdata/influxdb/schema\"\r\n\r\nschema.tagValues(\r\n  bucket: \"xpinger\",\r\n  tag: \"device\",\r\n  predicate: (r) =>\r\n    r._measurement == \"ping_metrics\" and\r\n    r.group == \"5 Cloud\"\r\n)"
                 },
                 "refresh": 1,
                 "type": "query"
