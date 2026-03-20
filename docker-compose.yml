@@ -24,8 +24,6 @@ services:
     image: influxdb:2
     container_name: xpinger_influxdb
     restart: always
-    ports:
-      - "8086:8086"
     environment:
       - DOCKER_INFLUXDB_INIT_MODE=setup
       - DOCKER_INFLUXDB_INIT_USERNAME=${INFLUXDB_USERNAME:-admin}

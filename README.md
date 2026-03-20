@@ -36,15 +36,15 @@ The entire stack is fully pre-configured! To start monitoring your devices, simp
 
 3. **Customize your Environment / Change Ports**:
    Open the newly generated `.env` file at the root of the project to change the defaults:
-   - `GRAFANA_PORT` (Default is `3000` — modify this if you have a port collision)
+   - `GRAFANA_PORT` — If you don't enter this during deploy, you can change it manually here. The deployment script prevents collisions by ensuring the port is actually free. Be sure to have `ss`, `netstat`, `nc`, or `lsof` installed on your system!
    - `INFLUXDB_USERNAME` / `INFLUXDB_PASSWORD` (Default: `admin` / `admin12345`)
    - `GRAFANA_USER` / `GRAFANA_PASSWORD` (Default: `admin` / `admin12345`)
    
-   If you change any configuration, just re-run `bash deploy.sh` to apply them.
+   If you change any configuration, just re-run `bash deploy.sh`.
 
 4. **Access the Web Interfaces**:
    - **Grafana**: Available at `http://localhost:3000` (or the custom port you defined).
-   - **InfluxDB**: Available at `http://localhost:8086`.
+   - *Note: InfluxDB is intentionally unexposed to the host operating system so it stays securely isolated between your background pinging script and the Grafana instance.*
 
 ## File Structure Overview
 - `deploy.sh`: Bootstrap script to prepare local environments and launch the stack.
