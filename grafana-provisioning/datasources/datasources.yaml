@@ -8,7 +8,7 @@ datasources:
     isDefault: true
     jsonData:
       version: Flux
-      organization: ${INFLUXDB_ORG:-xpinger}
-      defaultBucket: ${INFLUXDB_BUCKET:-xpinger}
+      organization: ${INFLUXDB_ORG}
+      defaultBucket: ${INFLUXDB_BUCKET}
     secureJsonData:
       token: ${INFLUXDB_API_TOKEN}

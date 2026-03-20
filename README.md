@@ -30,9 +30,10 @@ The entire stack is fully pre-configured! To start monitoring your devices, simp
    ```
    *That's it!* The script handles everything automatically:
    - Configures your `.env` file with secure, auto-generated tokens.
-   - Sets InfluxDB as the default data source for Grafana.
+   - Sets InfluxDB as the default data source for Grafana targeting the `xpinger` organization and bucket.
    - Automatically mounts and displays your UI dashboards from `xpingerTemplates`.
    - Builds and starts all the containers.
+   - **Immediately tails the live logs (`docker-compose logs -f`) so you can watch your pings succeeding contextually. Press `Ctrl+C` to exit the logs (the containers will keep working in the background).**
 
 3. **Customize your Environment / Change Ports**:
    Open the newly generated `.env` file at the root of the project to change the defaults:
@@ -51,7 +52,6 @@ The entire stack is fully pre-configured! To start monitoring your devices, simp
 
 5. **Access the Web Interfaces**:
    - **Grafana**: Available at `http://localhost:3000` (or the custom port you defined).
-   - *Note: InfluxDB is intentionally unexposed to the host operating system so it stays securely isolated between your background pinging script and the Grafana instance.*
 
 ## File Structure Overview
 - `deploy.sh`: Bootstrap script to prepare local environments and launch the stack.

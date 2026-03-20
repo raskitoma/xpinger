@@ -112,5 +112,9 @@ docker-compose up -d --build
 
 echo ""
 echo "Deployment complete!"
-echo "You can check the .env file to view or change your passwords/ports."
-echo "If you change the port, run ./deploy.sh again."
+echo "Configuration defaults are safely stored in your local .env file."
+echo "If you change any passwords or the port, just run bash deploy.sh again."
+echo ""
+echo "Streaming logs from docker-compose. Press Ctrl+C to exit and leave it running in the background."
+echo "--------------------------------------------------------"
+docker-compose logs -f

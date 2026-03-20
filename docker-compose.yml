@@ -47,6 +47,8 @@ services:
       - GF_SECURITY_ADMIN_USER=${GRAFANA_USER:-admin}
       - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD:-admin12345}
       - INFLUXDB_API_TOKEN=${INFLUXDB_API_TOKEN:-my-super-secret-auth-token}
+      - INFLUXDB_ORG=${INFLUXDB_ORG:-xpinger}
+      - INFLUXDB_BUCKET=${INFLUXDB_BUCKET:-xpinger}
       - GF_AUTH_ANONYMOUS_ENABLED=true
       - GF_AUTH_ANONYMOUS_ORG_ROLE=Viewer
       - GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH=/var/lib/grafana/dashboards/xpinger.json
