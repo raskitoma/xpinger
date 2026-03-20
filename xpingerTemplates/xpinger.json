@@ -1,0 +1,2279 @@
+{
+    "annotations": {
+        "list": [
+            {
+                "builtIn": 1,
+                "datasource": {
+                    "type": "grafana",
+                    "uid": "-- Grafana --"
+                },
+                "enable": true,
+                "hide": true,
+                "iconColor": "rgba(0, 211, 255, 1)",
+                "name": "Annotations & Alerts",
+                "type": "dashboard"
+            }
+        ]
+    },
+    "editable": false,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 0,
+    "id": 0,
+    "links": [],
+    "panels": [
+        {
+            "fieldConfig": {
+                "defaults": {},
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 2,
+                "w": 24,
+                "x": 0,
+                "y": 0
+            },
+            "id": 115,
+            "options": {
+                "code": {
+                    "language": "plaintext",
+                    "showLineNumbers": false,
+                    "showMiniMap": false
+                },
+                "content": "<div style=\"display: flex; justify-content: space-between; align-items: center; padding: 0px 40px; font-family: sans-serif; height: 50px; overflow: hidden;\">\n\n  <span style=\"color: white; font-size: 1.8rem; font-weight: bold;\">\n    Pinger\n  </span>\n  \n  <div style=\"display: flex; justify-content: center; padding: 5px;\">\n    <a href=\"/d/xpingerdetails\" style=\"text-decoration: none;\">\n      <span style=\"\n        background: #cccccc; \n        color: #023595; \n        padding: 4px 26px; \n        border-radius: 4px; \n        font-weight: 200; \n        font-size: 1rem; \n        border: 1px solid #d1d5db; \n        display: inline-block;\n        text-align: center;\n      \">\n        Open Detailed Info\n      </span>\n    </a>\n  </div>\n\n</div>",
+                "mode": "html"
+            },
+            "pluginVersion": "12.3.2+security-01",
+            "title": "",
+            "transparent": true,
+            "type": "text"
+        },
+        {
+            "fieldConfig": {
+                "defaults": {},
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 2,
+                "w": 24,
+                "x": 0,
+                "y": 2
+            },
+            "id": 102,
+            "options": {
+                "code": {
+                    "language": "plaintext",
+                    "showLineNumbers": false,
+                    "showMiniMap": false
+                },
+                "content": "### Scanners",
+                "mode": "markdown"
+            },
+            "pluginVersion": "12.3.2+security-01",
+            "title": "",
+            "type": "text"
+        },
+        {
+            "datasource": {
+                "type": "influxdb",
+                "uid": "dff7v8js3usqoa"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "mappings": [
+                        {
+                            "options": {
+                                "offline": {
+                                    "color": "red",
+                                    "index": 1,
+                                    "text": "Offline"
+                                },
+                                "online": {
+                                    "color": "green",
+                                    "index": 0,
+                                    "text": "Online"
+                                }
+                            },
+                            "type": "value"
+                        }
+                    ],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": 0
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    },
+                    "unit": "ms"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 1,
+                "w": 6,
+                "x": 0,
+                "y": 4
+            },
+            "id": 100,
+            "options": {
+                "inlineEditing": false,
+                "panZoom": false,
+                "root": {
+                    "background": {
+                        "color": {
+                            "fixed": "transparent"
+                        },
+                        "image": {
+                            "fixed": ""
+                        }
+                    },
+                    "border": {
+                        "color": {
+                            "fixed": "dark-green"
+                        }
+                    },
+                    "constraint": {
+                        "horizontal": "left",
+                        "vertical": "top"
+                    },
+                    "elements": [
+                        {
+                            "background": {
+                                "color": {
+                                    "fixed": "transparent"
+                                }
+                            },
+                            "border": {
+                                "color": {
+                                    "fixed": "dark-green"
+                                }
+                            },
+                            "config": {
+                                "align": "center",
+                                "color": {
+                                    "fixed": "text"
+                                },
+                                "size": 18,
+                                "text": {
+                                    "field": "latency",
+                                    "fixed": "",
+                                    "mode": "field"
+                                },
+                                "valign": "middle"
+                            },
+                            "constraint": {
+                                "horizontal": "left",
+                                "vertical": "top"
+                            },
+                            "links": [],
+                            "name": "PingValue",
+                            "options": {
+                                "suffix": " ms",
+                                "text": {
+                                    "field": "ping_ms",
+                                    "mode": "field"
+                                }
+                            },
+                            "placement": {
+                                "height": 30,
+                                "left": 408,
+                                "rotation": 0,
+                                "top": 5,
+                                "width": 151
+                            },
+                            "type": "metric-value"
+                        },
+                        {
+                            "background": {
+                                "color": {
+                                    "field": "current_status",
+                                    "fixed": "#D9D9D9"
+                                },
+                                "image": {
+                                    "field": "current_status",
+                                    "mode": "field"
+                                }
+                            },
+                            "border": {
+                                "color": {
+                                    "fixed": "dark-green"
+                                }
+                            },
+                            "config": {
+                                "align": "center",
+                                "color": {
+                                    "fixed": "#000000"
+                                },
+                                "size": 18,
+                                "text": {
+                                    "field": "current_status",
+                                    "fixed": "",
+                                    "mode": "field"
+                                },
+                                "valign": "middle"
+                            },
+                            "constraint": {
+                                "horizontal": "left",
+                                "vertical": "top"
+                            },
+                            "links": [],
+                            "name": "Status",
+                            "options": {
+                                "suffix": " ms",
+                                "text": {
+                                    "field": "ping_ms",
+                                    "mode": "field"
+                                }
+                            },
+                            "placement": {
+                                "height": 30,
+                                "left": 291,
+                                "rotation": 0,
+                                "top": 5,
+                                "width": 117
+                            },
+                            "type": "metric-value"
+                        },
+                        {
+                            "background": {
+                                "color": {
+                                    "fixed": "transparent"
+                                }
+                            },
+                            "border": {
+                                "color": {
+                                    "fixed": "dark-green"
+                                }
+                            },
+                            "config": {
+                                "align": "center",
+                                "color": {
+                                    "fixed": "text"
+                                },
+                                "size": 18,
+                                "text": {
+                                    "field": "location",
+                                    "fixed": "",
+                                    "mode": "field"
+                                },
+                                "valign": "middle"
+                            },
+                            "connections": [],
+                            "constraint": {
+                                "horizontal": "left",
+                                "vertical": "top"
+                            },
+                            "links": [],
+                            "name": "Location",
+                            "options": {
+                                "suffix": " ms",
+                                "text": {
+                                    "field": "ping_ms",
+                                    "mode": "field"
+                                }
+                            },
+                            "placement": {
+                                "height": 30,
+                                "left": 158,
+                                "rotation": 0,
+                                "top": 5,
+                                "width": 133
+                            },
+                            "type": "metric-value"
+                        },
+                        {
+                            "background": {
+                                "color": {
+                                    "fixed": "transparent"
+                                }
+                            },
+                            "border": {
+                                "color": {
+                                    "fixed": "dark-green"
+                                }
+                            },
+                            "config": {
+                                "align": "center",
+                                "color": {
+                                    "fixed": "text"
+                                },
+                                "size": 18,
+                                "text": {
+                                    "field": "hostname",
+                                    "fixed": "",
+                                    "mode": "field"
+                                },
+                                "valign": "middle"
+                            },
+                            "connections": [],
+                            "constraint": {
+                                "horizontal": "left",
+                                "vertical": "top"
+                            },
+                            "links": [],
+                            "name": "Hostname",
+                            "options": {
+                                "suffix": " ms",
+                                "text": {
+                                    "field": "ping_ms",
+                                    "mode": "field"
+                                }
+                            },
+                            "placement": {
+                                "height": 30,
+                                "left": 5,
+                                "rotation": 0,
+                                "top": 5,
+                                "width": 155
+                            },
+                            "type": "metric-value"
+                        }
+                    ],
+                    "name": "Element 1773162150828",
+                    "placement": {
+                        "height": 100,
+                        "left": 0,
+                        "rotation": 0,
+                        "top": 0,
+                        "width": 100
+                    },
+                    "type": "frame"
+                },
+                "showAdvancedTypes": true,
+                "tooltip": {
+                    "disableForOneClick": false,
+                    "mode": "none"
+                },
+                "zoomToContent": false
+            },
+            "pluginVersion": "12.3.2+security-01",
+            "repeat": "Devices_1",
+            "repeatDirection": "v",
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "influxdb",
+                        "uid": "dff7v8js3usqoa"
+                    },
+                    "query": "from(bucket: \"warehouse\")\r\n  |> range(start: -10m)\r\n  |> filter(fn: (r) => r._measurement == \"ping_metrics\")\r\n  |> filter(fn: (r) => r.device == \"${Devices_1}\")\r\n  |> last()\r\n  |> pivot(rowKey:[\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\r\n  |> group()\r\n  |> map(fn: (r) => ({\r\n      _time: r._time,\r\n      latency: r.ms,\r\n      device_group: r.group,\r\n      hostname: r.device,\r\n      current_status: r.status,\r\n      location: r.location\r\n    }))\r\n  |> keep(columns: [\"_time\", \"latency\", \"device_group\", \"hostname\", \"current_status\", \"location\"])\r\n  |> yield(name: \"status\")",
+                    "refId": "A"
+                }
+            ],
+            "title": "",
+            "transparent": true,
+            "type": "canvas"
+        },
+        {
+            "datasource": {
+                "type": "influxdb",
+                "uid": "dff7v8js3usqoa"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "thresholds"
+                    },
+                    "custom": {
+                        "axisPlacement": "hidden",
+                        "axisWidth": 0,
+                        "fillOpacity": 70,
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "lineWidth": 0
+                    },
+                    "decimals": 2,
+                    "mappings": [],
+                    "max": 1000,
+                    "min": 0,
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": 0
+                            },
+                            {
+                                "color": "dark-red",
+                                "value": 0
+                            },
+                            {
+                                "color": "dark-green",
+                                "value": 0.0001
+                            },
+                            {
+                                "color": "yellow",
+                                "value": 200
+                            },
+                            {
+                                "color": "dark-orange",
+                                "value": 600
+                            },
+                            {
+                                "color": "dark-red",
+                                "value": 1000
+                            }
+                        ]
+                    },
+                    "unit": "ms"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 1,
+                "w": 6,
+                "x": 6,
+                "y": 4
+            },
+            "id": 101,
+            "options": {
+                "colWidth": 0.8,
+                "legend": {
+                    "displayMode": "list",
+                    "placement": "bottom",
+                    "showLegend": false
+                },
+                "rowHeight": 1,
+                "showValue": "never",
+                "tooltip": {
+                    "hideZeros": false,
+                    "mode": "single",
+                    "sort": "none"
+                }
+            },
+            "pluginVersion": "12.3.2+security-01",
+            "repeat": "Devices_1",
+            "repeatDirection": "v",
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "influxdb",
+                        "uid": "dff7v8js3usqoa"
+                    },
+                    "query": "import \"date\"\r\n\r\nstopTime = date.truncate(t: now(), unit: 1m)\r\nstartTime = date.add(d: -11m, to: stopTime)\r\n\r\nfrom(bucket: \"warehouse\")\r\n  |> range(start: startTime, stop: stopTime)\r\n  |> filter(fn: (r) => r._measurement == \"ping_metrics\")\r\n  |> filter(fn: (r) => r.device == \"${Devices_1}\")\r\n  |> filter(fn: (r) => r._field == \"ms\")\r\n  |> aggregateWindow(every: 1m, fn: last, createEmpty: true)\r\n  |> fill(value: 0.0)\r\n  // Drop ALL tags (device, host, etc.) so only _time and _value remain\r\n  |> drop(columns: [\"_measurement\", \"device\", \"host\", \"_field\", \"group\", \"ip\", \"location\", \"status\", \"_start\", \"_stop\"]) \r\n  |> group() \r\n  |> tail(n: 10)\r\n  |> yield(name: \"history_data\")",
+                    "refId": "A"
+                }
+            ],
+            "title": "",
+            "transparent": true,
+            "type": "status-history"
+        },
+        {
+            "fieldConfig": {
+                "defaults": {},
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 2,
+                "w": 24,
+                "x": 0,
+                "y": 16
+            },
+            "id": 103,
+            "options": {
+                "code": {
+                    "language": "plaintext",
+                    "showLineNumbers": false,
+                    "showMiniMap": false
+                },
+                "content": "### Labeler",
+                "mode": "markdown"
+            },
+            "pluginVersion": "12.3.2+security-01",
+            "title": "",
+            "type": "text"
+        },
+        {
+            "datasource": {
+                "type": "influxdb",
+                "uid": "dff7v8js3usqoa"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "mappings": [
+                        {
+                            "options": {
+                                "offline": {
+                                    "color": "red",
+                                    "index": 1,
+                                    "text": "Offline"
+                                },
+                                "online": {
+                                    "color": "green",
+                                    "index": 0,
+                                    "text": "Online"
+                                }
+                            },
+                            "type": "value"
+                        }
+                    ],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": 0
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    },
+                    "unit": "ms"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 1,
+                "w": 6,
+                "x": 0,
+                "y": 18
+            },
+            "id": 116,
+            "options": {
+                "inlineEditing": false,
+                "panZoom": false,
+                "root": {
+                    "background": {
+                        "color": {
+                            "fixed": "transparent"
+                        },
+                        "image": {
+                            "fixed": ""
+                        }
+                    },
+                    "border": {
+                        "color": {
+                            "fixed": "dark-green"
+                        }
+                    },
+                    "constraint": {
+                        "horizontal": "left",
+                        "vertical": "top"
+                    },
+                    "elements": [
+                        {
+                            "background": {
+                                "color": {
+                                    "fixed": "transparent"
+                                }
+                            },
+                            "border": {
+                                "color": {
+                                    "fixed": "dark-green"
+                                }
+                            },
+                            "config": {
+                                "align": "center",
+                                "color": {
+                                    "fixed": "text"
+                                },
+                                "size": 18,
+                                "text": {
+                                    "field": "latency",
+                                    "fixed": "",
+                                    "mode": "field"
+                                },
+                                "valign": "middle"
+                            },
+                            "constraint": {
+                                "horizontal": "left",
+                                "vertical": "top"
+                            },
+                            "links": [],
+                            "name": "PingValue",
+                            "options": {
+                                "suffix": " ms",
+                                "text": {
+                                    "field": "ping_ms",
+                                    "mode": "field"
+                                }
+                            },
+                            "placement": {
+                                "height": 30,
+                                "left": 408,
+                                "rotation": 0,
+                                "top": 5,
+                                "width": 151
+                            },
+                            "type": "metric-value"
+                        },
+                        {
+                            "background": {
+                                "color": {
+                                    "field": "current_status",
+                                    "fixed": "#D9D9D9"
+                                },
+                                "image": {
+                                    "field": "current_status",
+                                    "mode": "field"
+                                }
+                            },
+                            "border": {
+                                "color": {
+                                    "fixed": "dark-green"
+                                }
+                            },
+                            "config": {
+                                "align": "center",
+                                "color": {
+                                    "fixed": "#000000"
+                                },
+                                "size": 18,
+                                "text": {
+                                    "field": "current_status",
+                                    "fixed": "",
+                                    "mode": "field"
+                                },
+                                "valign": "middle"
+                            },
+                            "constraint": {
+                                "horizontal": "left",
+                                "vertical": "top"
+                            },
+                            "links": [],
+                            "name": "Status",
+                            "options": {
+                                "suffix": " ms",
+                                "text": {
+                                    "field": "ping_ms",
+                                    "mode": "field"
+                                }
+                            },
+                            "placement": {
+                                "height": 30,
+                                "left": 291,
+                                "rotation": 0,
+                                "top": 5,
+                                "width": 117
+                            },
+                            "type": "metric-value"
+                        },
+                        {
+                            "background": {
+                                "color": {
+                                    "fixed": "transparent"
+                                }
+                            },
+                            "border": {
+                                "color": {
+                                    "fixed": "dark-green"
+                                }
+                            },
+                            "config": {
+                                "align": "center",
+                                "color": {
+                                    "fixed": "text"
+                                },
+                                "size": 18,
+                                "text": {
+                                    "field": "location",
+                                    "fixed": "",
+                                    "mode": "field"
+                                },
+                                "valign": "middle"
+                            },
+                            "connections": [],
+                            "constraint": {
+                                "horizontal": "left",
+                                "vertical": "top"
+                            },
+                            "links": [],
+                            "name": "Location",
+                            "options": {
+                                "suffix": " ms",
+                                "text": {
+                                    "field": "ping_ms",
+                                    "mode": "field"
+                                }
+                            },
+                            "placement": {
+                                "height": 30,
+                                "left": 158,
+                                "rotation": 0,
+                                "top": 5,
+                                "width": 133
+                            },
+                            "type": "metric-value"
+                        },
+                        {
+                            "background": {
+                                "color": {
+                                    "fixed": "transparent"
+                                }
+                            },
+                            "border": {
+                                "color": {
+                                    "fixed": "dark-green"
+                                }
+                            },
+                            "config": {
+                                "align": "center",
+                                "color": {
+                                    "fixed": "text"
+                                },
+                                "size": 18,
+                                "text": {
+                                    "field": "hostname",
+                                    "fixed": "",
+                                    "mode": "field"
+                                },
+                                "valign": "middle"
+                            },
+                            "connections": [],
+                            "constraint": {
+                                "horizontal": "left",
+                                "vertical": "top"
+                            },
+                            "links": [],
+                            "name": "Hostname",
+                            "options": {
+                                "suffix": " ms",
+                                "text": {
+                                    "field": "ping_ms",
+                                    "mode": "field"
+                                }
+                            },
+                            "placement": {
+                                "height": 30,
+                                "left": 5,
+                                "rotation": 0,
+                                "top": 5,
+                                "width": 155
+                            },
+                            "type": "metric-value"
+                        }
+                    ],
+                    "name": "Element 1773162150828",
+                    "placement": {
+                        "height": 100,
+                        "left": 0,
+                        "rotation": 0,
+                        "top": 0,
+                        "width": 100
+                    },
+                    "type": "frame"
+                },
+                "showAdvancedTypes": true,
+                "tooltip": {
+                    "disableForOneClick": false,
+                    "mode": "none"
+                },
+                "zoomToContent": false
+            },
+            "pluginVersion": "12.3.2+security-01",
+            "repeat": "Devices_2",
+            "repeatDirection": "v",
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "influxdb",
+                        "uid": "dff7v8js3usqoa"
+                    },
+                    "query": "from(bucket: \"warehouse\")\r\n  |> range(start: -10m)\r\n  |> filter(fn: (r) => r._measurement == \"ping_metrics\")\r\n  |> filter(fn: (r) => r.device == \"${Devices_2}\")\r\n  |> last()\r\n  |> pivot(rowKey:[\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\r\n  |> group()\r\n  |> map(fn: (r) => ({\r\n      _time: r._time,\r\n      latency: r.ms,\r\n      device_group: r.group,\r\n      hostname: r.device,\r\n      current_status: r.status,\r\n      location: r.location\r\n    }))\r\n  |> keep(columns: [\"_time\", \"latency\", \"device_group\", \"hostname\", \"current_status\", \"location\"])\r\n  |> yield(name: \"status\")",
+                    "refId": "A"
+                }
+            ],
+            "title": "",
+            "transparent": true,
+            "type": "canvas"
+        },
+        {
+            "datasource": {
+                "type": "influxdb",
+                "uid": "dff7v8js3usqoa"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "thresholds"
+                    },
+                    "custom": {
+                        "axisPlacement": "hidden",
+                        "axisWidth": 0,
+                        "fillOpacity": 70,
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "lineWidth": 0
+                    },
+                    "decimals": 2,
+                    "mappings": [],
+                    "max": 1000,
+                    "min": 0,
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": 0
+                            },
+                            {
+                                "color": "dark-red",
+                                "value": 0
+                            },
+                            {
+                                "color": "dark-green",
+                                "value": 0.0001
+                            },
+                            {
+                                "color": "yellow",
+                                "value": 200
+                            },
+                            {
+                                "color": "dark-orange",
+                                "value": 600
+                            },
+                            {
+                                "color": "dark-red",
+                                "value": 1000
+                            }
+                        ]
+                    },
+                    "unit": "ms"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 1,
+                "w": 6,
+                "x": 6,
+                "y": 18
+            },
+            "id": 117,
+            "options": {
+                "colWidth": 0.8,
+                "legend": {
+                    "displayMode": "list",
+                    "placement": "bottom",
+                    "showLegend": false
+                },
+                "rowHeight": 1,
+                "showValue": "never",
+                "tooltip": {
+                    "hideZeros": false,
+                    "mode": "single",
+                    "sort": "none"
+                }
+            },
+            "pluginVersion": "12.3.2+security-01",
+            "repeat": "Devices_2",
+            "repeatDirection": "v",
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "influxdb",
+                        "uid": "dff7v8js3usqoa"
+                    },
+                    "query": "import \"date\"\r\n\r\nstopTime = date.truncate(t: now(), unit: 1m)\r\nstartTime = date.add(d: -11m, to: stopTime)\r\n\r\nfrom(bucket: \"warehouse\")\r\n  |> range(start: startTime, stop: stopTime)\r\n  |> filter(fn: (r) => r._measurement == \"ping_metrics\")\r\n  |> filter(fn: (r) => r.device == \"${Devices_2}\")\r\n  |> filter(fn: (r) => r._field == \"ms\")\r\n  |> aggregateWindow(every: 1m, fn: last, createEmpty: true)\r\n  |> fill(value: 0.0)\r\n  // Drop ALL tags (device, host, etc.) so only _time and _value remain\r\n  |> drop(columns: [\"_measurement\", \"device\", \"host\", \"_field\", \"group\", \"ip\", \"location\", \"status\", \"_start\", \"_stop\"]) \r\n  |> group() \r\n  |> tail(n: 10)\r\n  |> yield(name: \"history_data\")",
+                    "refId": "A"
+                }
+            ],
+            "title": "",
+            "transparent": true,
+            "type": "status-history"
+        },
+        {
+            "fieldConfig": {
+                "defaults": {},
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 2,
+                "w": 24,
+                "x": 0,
+                "y": 22
+            },
+            "id": 106,
+            "options": {
+                "code": {
+                    "language": "plaintext",
+                    "showLineNumbers": false,
+                    "showMiniMap": false
+                },
+                "content": "### Printer",
+                "mode": "markdown"
+            },
+            "pluginVersion": "12.3.2+security-01",
+            "title": "",
+            "type": "text"
+        },
+        {
+            "datasource": {
+                "type": "influxdb",
+                "uid": "dff7v8js3usqoa"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "mappings": [
+                        {
+                            "options": {
+                                "offline": {
+                                    "color": "red",
+                                    "index": 1,
+                                    "text": "Offline"
+                                },
+                                "online": {
+                                    "color": "green",
+                                    "index": 0,
+                                    "text": "Online"
+                                }
+                            },
+                            "type": "value"
+                        }
+                    ],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": 0
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    },
+                    "unit": "ms"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 1,
+                "w": 6,
+                "x": 0,
+                "y": 24
+            },
+            "id": 118,
+            "options": {
+                "inlineEditing": false,
+                "panZoom": false,
+                "root": {
+                    "background": {
+                        "color": {
+                            "fixed": "transparent"
+                        },
+                        "image": {
+                            "fixed": ""
+                        }
+                    },
+                    "border": {
+                        "color": {
+                            "fixed": "dark-green"
+                        }
+                    },
+                    "constraint": {
+                        "horizontal": "left",
+                        "vertical": "top"
+                    },
+                    "elements": [
+                        {
+                            "background": {
+                                "color": {
+                                    "fixed": "transparent"
+                                }
+                            },
+                            "border": {
+                                "color": {
+                                    "fixed": "dark-green"
+                                }
+                            },
+                            "config": {
+                                "align": "center",
+                                "color": {
+                                    "fixed": "text"
+                                },
+                                "size": 18,
+                                "text": {
+                                    "field": "latency",
+                                    "fixed": "",
+                                    "mode": "field"
+                                },
+                                "valign": "middle"
+                            },
+                            "constraint": {
+                                "horizontal": "left",
+                                "vertical": "top"
+                            },
+                            "links": [],
+                            "name": "PingValue",
+                            "options": {
+                                "suffix": " ms",
+                                "text": {
+                                    "field": "ping_ms",
+                                    "mode": "field"
+                                }
+                            },
+                            "placement": {
+                                "height": 30,
+                                "left": 408,
+                                "rotation": 0,
+                                "top": 5,
+                                "width": 151
+                            },
+                            "type": "metric-value"
+                        },
+                        {
+                            "background": {
+                                "color": {
+                                    "field": "current_status",
+                                    "fixed": "#D9D9D9"
+                                },
+                                "image": {
+                                    "field": "current_status",
+                                    "mode": "field"
+                                }
+                            },
+                            "border": {
+                                "color": {
+                                    "fixed": "dark-green"
+                                }
+                            },
+                            "config": {
+                                "align": "center",
+                                "color": {
+                                    "fixed": "#000000"
+                                },
+                                "size": 18,
+                                "text": {
+                                    "field": "current_status",
+                                    "fixed": "",
+                                    "mode": "field"
+                                },
+                                "valign": "middle"
+                            },
+                            "constraint": {
+                                "horizontal": "left",
+                                "vertical": "top"
+                            },
+                            "links": [],
+                            "name": "Status",
+                            "options": {
+                                "suffix": " ms",
+                                "text": {
+                                    "field": "ping_ms",
+                                    "mode": "field"
+                                }
+                            },
+                            "placement": {
+                                "height": 30,
+                                "left": 291,
+                                "rotation": 0,
+                                "top": 5,
+                                "width": 117
+                            },
+                            "type": "metric-value"
+                        },
+                        {
+                            "background": {
+                                "color": {
+                                    "fixed": "transparent"
+                                }
+                            },
+                            "border": {
+                                "color": {
+                                    "fixed": "dark-green"
+                                }
+                            },
+                            "config": {
+                                "align": "center",
+                                "color": {
+                                    "fixed": "text"
+                                },
+                                "size": 18,
+                                "text": {
+                                    "field": "location",
+                                    "fixed": "",
+                                    "mode": "field"
+                                },
+                                "valign": "middle"
+                            },
+                            "connections": [],
+                            "constraint": {
+                                "horizontal": "left",
+                                "vertical": "top"
+                            },
+                            "links": [],
+                            "name": "Location",
+                            "options": {
+                                "suffix": " ms",
+                                "text": {
+                                    "field": "ping_ms",
+                                    "mode": "field"
+                                }
+                            },
+                            "placement": {
+                                "height": 30,
+                                "left": 158,
+                                "rotation": 0,
+                                "top": 5,
+                                "width": 133
+                            },
+                            "type": "metric-value"
+                        },
+                        {
+                            "background": {
+                                "color": {
+                                    "fixed": "transparent"
+                                }
+                            },
+                            "border": {
+                                "color": {
+                                    "fixed": "dark-green"
+                                }
+                            },
+                            "config": {
+                                "align": "center",
+                                "color": {
+                                    "fixed": "text"
+                                },
+                                "size": 18,
+                                "text": {
+                                    "field": "hostname",
+                                    "fixed": "",
+                                    "mode": "field"
+                                },
+                                "valign": "middle"
+                            },
+                            "connections": [],
+                            "constraint": {
+                                "horizontal": "left",
+                                "vertical": "top"
+                            },
+                            "links": [],
+                            "name": "Hostname",
+                            "options": {
+                                "suffix": " ms",
+                                "text": {
+                                    "field": "ping_ms",
+                                    "mode": "field"
+                                }
+                            },
+                            "placement": {
+                                "height": 30,
+                                "left": 5,
+                                "rotation": 0,
+                                "top": 5,
+                                "width": 155
+                            },
+                            "type": "metric-value"
+                        }
+                    ],
+                    "name": "Element 1773162150828",
+                    "placement": {
+                        "height": 100,
+                        "left": 0,
+                        "rotation": 0,
+                        "top": 0,
+                        "width": 100
+                    },
+                    "type": "frame"
+                },
+                "showAdvancedTypes": true,
+                "tooltip": {
+                    "disableForOneClick": false,
+                    "mode": "none"
+                },
+                "zoomToContent": false
+            },
+            "pluginVersion": "12.3.2+security-01",
+            "repeat": "Devices_3",
+            "repeatDirection": "v",
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "influxdb",
+                        "uid": "dff7v8js3usqoa"
+                    },
+                    "query": "from(bucket: \"warehouse\")\r\n  |> range(start: -10m)\r\n  |> filter(fn: (r) => r._measurement == \"ping_metrics\")\r\n  |> filter(fn: (r) => r.device == \"${Devices_3}\")\r\n  |> last()\r\n  |> pivot(rowKey:[\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\r\n  |> group()\r\n  |> map(fn: (r) => ({\r\n      _time: r._time,\r\n      latency: r.ms,\r\n      device_group: r.group,\r\n      hostname: r.device,\r\n      current_status: r.status,\r\n      location: r.location\r\n    }))\r\n  |> keep(columns: [\"_time\", \"latency\", \"device_group\", \"hostname\", \"current_status\", \"location\"])\r\n  |> yield(name: \"status\")",
+                    "refId": "A"
+                }
+            ],
+            "title": "",
+            "transparent": true,
+            "type": "canvas"
+        },
+        {
+            "datasource": {
+                "type": "influxdb",
+                "uid": "dff7v8js3usqoa"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "thresholds"
+                    },
+                    "custom": {
+                        "axisPlacement": "hidden",
+                        "axisWidth": 0,
+                        "fillOpacity": 70,
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "lineWidth": 0
+                    },
+                    "decimals": 2,
+                    "mappings": [],
+                    "max": 1000,
+                    "min": 0,
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": 0
+                            },
+                            {
+                                "color": "dark-red",
+                                "value": 0
+                            },
+                            {
+                                "color": "dark-green",
+                                "value": 0.0001
+                            },
+                            {
+                                "color": "yellow",
+                                "value": 200
+                            },
+                            {
+                                "color": "dark-orange",
+                                "value": 600
+                            },
+                            {
+                                "color": "dark-red",
+                                "value": 1000
+                            }
+                        ]
+                    },
+                    "unit": "ms"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 1,
+                "w": 6,
+                "x": 6,
+                "y": 24
+            },
+            "id": 121,
+            "options": {
+                "colWidth": 0.8,
+                "legend": {
+                    "displayMode": "list",
+                    "placement": "bottom",
+                    "showLegend": false
+                },
+                "rowHeight": 1,
+                "showValue": "never",
+                "tooltip": {
+                    "hideZeros": false,
+                    "mode": "single",
+                    "sort": "none"
+                }
+            },
+            "pluginVersion": "12.3.2+security-01",
+            "repeat": "Devices_3",
+            "repeatDirection": "v",
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "influxdb",
+                        "uid": "dff7v8js3usqoa"
+                    },
+                    "query": "import \"date\"\r\n\r\nstopTime = date.truncate(t: now(), unit: 1m)\r\nstartTime = date.add(d: -11m, to: stopTime)\r\n\r\nfrom(bucket: \"warehouse\")\r\n  |> range(start: startTime, stop: stopTime)\r\n  |> filter(fn: (r) => r._measurement == \"ping_metrics\")\r\n  |> filter(fn: (r) => r.device == \"${Devices_3}\")\r\n  |> filter(fn: (r) => r._field == \"ms\")\r\n  |> aggregateWindow(every: 1m, fn: last, createEmpty: true)\r\n  |> fill(value: 0.0)\r\n  // Drop ALL tags (device, host, etc.) so only _time and _value remain\r\n  |> drop(columns: [\"_measurement\", \"device\", \"host\", \"_field\", \"group\", \"ip\", \"location\", \"status\", \"_start\", \"_stop\"]) \r\n  |> group() \r\n  |> tail(n: 10)\r\n  |> yield(name: \"history_data\")",
+                    "refId": "A"
+                }
+            ],
+            "title": "",
+            "transparent": true,
+            "type": "status-history"
+        },
+        {
+            "fieldConfig": {
+                "defaults": {},
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 2,
+                "w": 24,
+                "x": 0,
+                "y": 26
+            },
+            "id": 107,
+            "options": {
+                "code": {
+                    "language": "plaintext",
+                    "showLineNumbers": false,
+                    "showMiniMap": false
+                },
+                "content": "### Infrastructure",
+                "mode": "markdown"
+            },
+            "pluginVersion": "12.3.2+security-01",
+            "title": "",
+            "type": "text"
+        },
+        {
+            "datasource": {
+                "type": "influxdb",
+                "uid": "dff7v8js3usqoa"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "mappings": [
+                        {
+                            "options": {
+                                "offline": {
+                                    "color": "red",
+                                    "index": 1,
+                                    "text": "Offline"
+                                },
+                                "online": {
+                                    "color": "green",
+                                    "index": 0,
+                                    "text": "Online"
+                                }
+                            },
+                            "type": "value"
+                        }
+                    ],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": 0
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    },
+                    "unit": "ms"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 1,
+                "w": 6,
+                "x": 0,
+                "y": 28
+            },
+            "id": 119,
+            "options": {
+                "inlineEditing": false,
+                "panZoom": false,
+                "root": {
+                    "background": {
+                        "color": {
+                            "fixed": "transparent"
+                        },
+                        "image": {
+                            "fixed": ""
+                        }
+                    },
+                    "border": {
+                        "color": {
+                            "fixed": "dark-green"
+                        }
+                    },
+                    "constraint": {
+                        "horizontal": "left",
+                        "vertical": "top"
+                    },
+                    "elements": [
+                        {
+                            "background": {
+                                "color": {
+                                    "fixed": "transparent"
+                                }
+                            },
+                            "border": {
+                                "color": {
+                                    "fixed": "dark-green"
+                                }
+                            },
+                            "config": {
+                                "align": "center",
+                                "color": {
+                                    "fixed": "text"
+                                },
+                                "size": 18,
+                                "text": {
+                                    "field": "latency",
+                                    "fixed": "",
+                                    "mode": "field"
+                                },
+                                "valign": "middle"
+                            },
+                            "constraint": {
+                                "horizontal": "left",
+                                "vertical": "top"
+                            },
+                            "links": [],
+                            "name": "PingValue",
+                            "options": {
+                                "suffix": " ms",
+                                "text": {
+                                    "field": "ping_ms",
+                                    "mode": "field"
+                                }
+                            },
+                            "placement": {
+                                "height": 30,
+                                "left": 408,
+                                "rotation": 0,
+                                "top": 5,
+                                "width": 151
+                            },
+                            "type": "metric-value"
+                        },
+                        {
+                            "background": {
+                                "color": {
+                                    "field": "current_status",
+                                    "fixed": "#D9D9D9"
+                                },
+                                "image": {
+                                    "field": "current_status",
+                                    "mode": "field"
+                                }
+                            },
+                            "border": {
+                                "color": {
+                                    "fixed": "dark-green"
+                                }
+                            },
+                            "config": {
+                                "align": "center",
+                                "color": {
+                                    "fixed": "#000000"
+                                },
+                                "size": 18,
+                                "text": {
+                                    "field": "current_status",
+                                    "fixed": "",
+                                    "mode": "field"
+                                },
+                                "valign": "middle"
+                            },
+                            "constraint": {
+                                "horizontal": "left",
+                                "vertical": "top"
+                            },
+                            "links": [],
+                            "name": "Status",
+                            "options": {
+                                "suffix": " ms",
+                                "text": {
+                                    "field": "ping_ms",
+                                    "mode": "field"
+                                }
+                            },
+                            "placement": {
+                                "height": 30,
+                                "left": 291,
+                                "rotation": 0,
+                                "top": 5,
+                                "width": 117
+                            },
+                            "type": "metric-value"
+                        },
+                        {
+                            "background": {
+                                "color": {
+                                    "fixed": "transparent"
+                                }
+                            },
+                            "border": {
+                                "color": {
+                                    "fixed": "dark-green"
+                                }
+                            },
+                            "config": {
+                                "align": "center",
+                                "color": {
+                                    "fixed": "text"
+                                },
+                                "size": 18,
+                                "text": {
+                                    "field": "location",
+                                    "fixed": "",
+                                    "mode": "field"
+                                },
+                                "valign": "middle"
+                            },
+                            "connections": [],
+                            "constraint": {
+                                "horizontal": "left",
+                                "vertical": "top"
+                            },
+                            "links": [],
+                            "name": "Location",
+                            "options": {
+                                "suffix": " ms",
+                                "text": {
+                                    "field": "ping_ms",
+                                    "mode": "field"
+                                }
+                            },
+                            "placement": {
+                                "height": 30,
+                                "left": 158,
+                                "rotation": 0,
+                                "top": 5,
+                                "width": 133
+                            },
+                            "type": "metric-value"
+                        },
+                        {
+                            "background": {
+                                "color": {
+                                    "fixed": "transparent"
+                                }
+                            },
+                            "border": {
+                                "color": {
+                                    "fixed": "dark-green"
+                                }
+                            },
+                            "config": {
+                                "align": "center",
+                                "color": {
+                                    "fixed": "text"
+                                },
+                                "size": 18,
+                                "text": {
+                                    "field": "hostname",
+                                    "fixed": "",
+                                    "mode": "field"
+                                },
+                                "valign": "middle"
+                            },
+                            "connections": [],
+                            "constraint": {
+                                "horizontal": "left",
+                                "vertical": "top"
+                            },
+                            "links": [],
+                            "name": "Hostname",
+                            "options": {
+                                "suffix": " ms",
+                                "text": {
+                                    "field": "ping_ms",
+                                    "mode": "field"
+                                }
+                            },
+                            "placement": {
+                                "height": 30,
+                                "left": 5,
+                                "rotation": 0,
+                                "top": 5,
+                                "width": 155
+                            },
+                            "type": "metric-value"
+                        }
+                    ],
+                    "name": "Element 1773162150828",
+                    "placement": {
+                        "height": 100,
+                        "left": 0,
+                        "rotation": 0,
+                        "top": 0,
+                        "width": 100
+                    },
+                    "type": "frame"
+                },
+                "showAdvancedTypes": true,
+                "tooltip": {
+                    "disableForOneClick": false,
+                    "mode": "none"
+                },
+                "zoomToContent": false
+            },
+            "pluginVersion": "12.3.2+security-01",
+            "repeat": "Devices_4",
+            "repeatDirection": "v",
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "influxdb",
+                        "uid": "dff7v8js3usqoa"
+                    },
+                    "query": "from(bucket: \"warehouse\")\r\n  |> range(start: -10m)\r\n  |> filter(fn: (r) => r._measurement == \"ping_metrics\")\r\n  |> filter(fn: (r) => r.device == \"${Devices_4}\")\r\n  |> last()\r\n  |> pivot(rowKey:[\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\r\n  |> group()\r\n  |> map(fn: (r) => ({\r\n      _time: r._time,\r\n      latency: r.ms,\r\n      device_group: r.group,\r\n      hostname: r.device,\r\n      current_status: r.status,\r\n      location: r.location\r\n    }))\r\n  |> keep(columns: [\"_time\", \"latency\", \"device_group\", \"hostname\", \"current_status\", \"location\"])\r\n  |> yield(name: \"status\")",
+                    "refId": "A"
+                }
+            ],
+            "title": "",
+            "transparent": true,
+            "type": "canvas"
+        },
+        {
+            "datasource": {
+                "type": "influxdb",
+                "uid": "dff7v8js3usqoa"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "thresholds"
+                    },
+                    "custom": {
+                        "axisPlacement": "hidden",
+                        "axisWidth": 0,
+                        "fillOpacity": 70,
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "lineWidth": 0
+                    },
+                    "decimals": 2,
+                    "mappings": [],
+                    "max": 1000,
+                    "min": 0,
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": 0
+                            },
+                            {
+                                "color": "dark-red",
+                                "value": 0
+                            },
+                            {
+                                "color": "dark-green",
+                                "value": 0.0001
+                            },
+                            {
+                                "color": "yellow",
+                                "value": 200
+                            },
+                            {
+                                "color": "dark-orange",
+                                "value": 600
+                            },
+                            {
+                                "color": "dark-red",
+                                "value": 1000
+                            }
+                        ]
+                    },
+                    "unit": "ms"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 1,
+                "w": 6,
+                "x": 6,
+                "y": 28
+            },
+            "id": 122,
+            "options": {
+                "colWidth": 0.8,
+                "legend": {
+                    "displayMode": "list",
+                    "placement": "bottom",
+                    "showLegend": false
+                },
+                "rowHeight": 1,
+                "showValue": "never",
+                "tooltip": {
+                    "hideZeros": false,
+                    "mode": "single",
+                    "sort": "none"
+                }
+            },
+            "pluginVersion": "12.3.2+security-01",
+            "repeat": "Devices_4",
+            "repeatDirection": "v",
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "influxdb",
+                        "uid": "dff7v8js3usqoa"
+                    },
+                    "query": "import \"date\"\r\n\r\nstopTime = date.truncate(t: now(), unit: 1m)\r\nstartTime = date.add(d: -11m, to: stopTime)\r\n\r\nfrom(bucket: \"warehouse\")\r\n  |> range(start: startTime, stop: stopTime)\r\n  |> filter(fn: (r) => r._measurement == \"ping_metrics\")\r\n  |> filter(fn: (r) => r.device == \"${Devices_4}\")\r\n  |> filter(fn: (r) => r._field == \"ms\")\r\n  |> aggregateWindow(every: 1m, fn: last, createEmpty: true)\r\n  |> fill(value: 0.0)\r\n  // Drop ALL tags (device, host, etc.) so only _time and _value remain\r\n  |> drop(columns: [\"_measurement\", \"device\", \"host\", \"_field\", \"group\", \"ip\", \"location\", \"status\", \"_start\", \"_stop\"]) \r\n  |> group() \r\n  |> tail(n: 10)\r\n  |> yield(name: \"history_data\")",
+                    "refId": "A"
+                }
+            ],
+            "title": "",
+            "transparent": true,
+            "type": "status-history"
+        },
+        {
+            "fieldConfig": {
+                "defaults": {},
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 2,
+                "w": 24,
+                "x": 0,
+                "y": 36
+            },
+            "id": 108,
+            "options": {
+                "code": {
+                    "language": "plaintext",
+                    "showLineNumbers": false,
+                    "showMiniMap": false
+                },
+                "content": "### Cloud Services",
+                "mode": "markdown"
+            },
+            "pluginVersion": "12.3.2+security-01",
+            "title": "",
+            "type": "text"
+        },
+        {
+            "datasource": {
+                "type": "influxdb",
+                "uid": "dff7v8js3usqoa"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "mappings": [
+                        {
+                            "options": {
+                                "offline": {
+                                    "color": "red",
+                                    "index": 1,
+                                    "text": "Offline"
+                                },
+                                "online": {
+                                    "color": "green",
+                                    "index": 0,
+                                    "text": "Online"
+                                }
+                            },
+                            "type": "value"
+                        }
+                    ],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": 0
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    },
+                    "unit": "ms"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 1,
+                "w": 6,
+                "x": 0,
+                "y": 38
+            },
+            "id": 120,
+            "options": {
+                "inlineEditing": false,
+                "panZoom": false,
+                "root": {
+                    "background": {
+                        "color": {
+                            "fixed": "transparent"
+                        },
+                        "image": {
+                            "fixed": ""
+                        }
+                    },
+                    "border": {
+                        "color": {
+                            "fixed": "dark-green"
+                        }
+                    },
+                    "constraint": {
+                        "horizontal": "left",
+                        "vertical": "top"
+                    },
+                    "elements": [
+                        {
+                            "background": {
+                                "color": {
+                                    "fixed": "transparent"
+                                }
+                            },
+                            "border": {
+                                "color": {
+                                    "fixed": "dark-green"
+                                }
+                            },
+                            "config": {
+                                "align": "center",
+                                "color": {
+                                    "fixed": "text"
+                                },
+                                "size": 18,
+                                "text": {
+                                    "field": "latency",
+                                    "fixed": "",
+                                    "mode": "field"
+                                },
+                                "valign": "middle"
+                            },
+                            "constraint": {
+                                "horizontal": "left",
+                                "vertical": "top"
+                            },
+                            "links": [],
+                            "name": "PingValue",
+                            "options": {
+                                "suffix": " ms",
+                                "text": {
+                                    "field": "ping_ms",
+                                    "mode": "field"
+                                }
+                            },
+                            "placement": {
+                                "height": 30,
+                                "left": 408,
+                                "rotation": 0,
+                                "top": 5,
+                                "width": 151
+                            },
+                            "type": "metric-value"
+                        },
+                        {
+                            "background": {
+                                "color": {
+                                    "field": "current_status",
+                                    "fixed": "#D9D9D9"
+                                },
+                                "image": {
+                                    "field": "current_status",
+                                    "mode": "field"
+                                }
+                            },
+                            "border": {
+                                "color": {
+                                    "fixed": "dark-green"
+                                }
+                            },
+                            "config": {
+                                "align": "center",
+                                "color": {
+                                    "fixed": "#000000"
+                                },
+                                "size": 18,
+                                "text": {
+                                    "field": "current_status",
+                                    "fixed": "",
+                                    "mode": "field"
+                                },
+                                "valign": "middle"
+                            },
+                            "constraint": {
+                                "horizontal": "left",
+                                "vertical": "top"
+                            },
+                            "links": [],
+                            "name": "Status",
+                            "options": {
+                                "suffix": " ms",
+                                "text": {
+                                    "field": "ping_ms",
+                                    "mode": "field"
+                                }
+                            },
+                            "placement": {
+                                "height": 30,
+                                "left": 291,
+                                "rotation": 0,
+                                "top": 5,
+                                "width": 117
+                            },
+                            "type": "metric-value"
+                        },
+                        {
+                            "background": {
+                                "color": {
+                                    "fixed": "transparent"
+                                }
+                            },
+                            "border": {
+                                "color": {
+                                    "fixed": "dark-green"
+                                }
+                            },
+                            "config": {
+                                "align": "center",
+                                "color": {
+                                    "fixed": "text"
+                                },
+                                "size": 18,
+                                "text": {
+                                    "field": "location",
+                                    "fixed": "",
+                                    "mode": "field"
+                                },
+                                "valign": "middle"
+                            },
+                            "connections": [],
+                            "constraint": {
+                                "horizontal": "left",
+                                "vertical": "top"
+                            },
+                            "links": [],
+                            "name": "Location",
+                            "options": {
+                                "suffix": " ms",
+                                "text": {
+                                    "field": "ping_ms",
+                                    "mode": "field"
+                                }
+                            },
+                            "placement": {
+                                "height": 30,
+                                "left": 158,
+                                "rotation": 0,
+                                "top": 5,
+                                "width": 133
+                            },
+                            "type": "metric-value"
+                        },
+                        {
+                            "background": {
+                                "color": {
+                                    "fixed": "transparent"
+                                }
+                            },
+                            "border": {
+                                "color": {
+                                    "fixed": "dark-green"
+                                }
+                            },
+                            "config": {
+                                "align": "center",
+                                "color": {
+                                    "fixed": "text"
+                                },
+                                "size": 18,
+                                "text": {
+                                    "field": "hostname",
+                                    "fixed": "",
+                                    "mode": "field"
+                                },
+                                "valign": "middle"
+                            },
+                            "connections": [],
+                            "constraint": {
+                                "horizontal": "left",
+                                "vertical": "top"
+                            },
+                            "links": [],
+                            "name": "Hostname",
+                            "options": {
+                                "suffix": " ms",
+                                "text": {
+                                    "field": "ping_ms",
+                                    "mode": "field"
+                                }
+                            },
+                            "placement": {
+                                "height": 30,
+                                "left": 5,
+                                "rotation": 0,
+                                "top": 5,
+                                "width": 155
+                            },
+                            "type": "metric-value"
+                        }
+                    ],
+                    "name": "Element 1773162150828",
+                    "placement": {
+                        "height": 100,
+                        "left": 0,
+                        "rotation": 0,
+                        "top": 0,
+                        "width": 100
+                    },
+                    "type": "frame"
+                },
+                "showAdvancedTypes": true,
+                "tooltip": {
+                    "disableForOneClick": false,
+                    "mode": "none"
+                },
+                "zoomToContent": false
+            },
+            "pluginVersion": "12.3.2+security-01",
+            "repeat": "Devices_5",
+            "repeatDirection": "v",
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "influxdb",
+                        "uid": "dff7v8js3usqoa"
+                    },
+                    "query": "from(bucket: \"warehouse\")\r\n  |> range(start: -10m)\r\n  |> filter(fn: (r) => r._measurement == \"ping_metrics\")\r\n  |> filter(fn: (r) => r.device == \"${Devices_5}\")\r\n  |> last()\r\n  |> pivot(rowKey:[\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\r\n  |> group()\r\n  |> map(fn: (r) => ({\r\n      _time: r._time,\r\n      latency: r.ms,\r\n      device_group: r.group,\r\n      hostname: r.device,\r\n      current_status: r.status,\r\n      location: r.location\r\n    }))\r\n  |> keep(columns: [\"_time\", \"latency\", \"device_group\", \"hostname\", \"current_status\", \"location\"])\r\n  |> yield(name: \"status\")",
+                    "refId": "A"
+                }
+            ],
+            "title": "",
+            "transparent": true,
+            "type": "canvas"
+        },
+        {
+            "datasource": {
+                "type": "influxdb",
+                "uid": "dff7v8js3usqoa"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "thresholds"
+                    },
+                    "custom": {
+                        "axisPlacement": "hidden",
+                        "axisWidth": 0,
+                        "fillOpacity": 70,
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "lineWidth": 0
+                    },
+                    "decimals": 2,
+                    "mappings": [],
+                    "max": 1000,
+                    "min": 0,
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": 0
+                            },
+                            {
+                                "color": "dark-red",
+                                "value": 0
+                            },
+                            {
+                                "color": "dark-green",
+                                "value": 0.0001
+                            },
+                            {
+                                "color": "yellow",
+                                "value": 200
+                            },
+                            {
+                                "color": "dark-orange",
+                                "value": 600
+                            },
+                            {
+                                "color": "dark-red",
+                                "value": 1000
+                            }
+                        ]
+                    },
+                    "unit": "ms"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 1,
+                "w": 6,
+                "x": 6,
+                "y": 38
+            },
+            "id": 123,
+            "options": {
+                "colWidth": 0.8,
+                "legend": {
+                    "displayMode": "list",
+                    "placement": "bottom",
+                    "showLegend": false
+                },
+                "rowHeight": 1,
+                "showValue": "never",
+                "tooltip": {
+                    "hideZeros": false,
+                    "mode": "single",
+                    "sort": "none"
+                }
+            },
+            "pluginVersion": "12.3.2+security-01",
+            "repeat": "Devices_5",
+            "repeatDirection": "v",
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "influxdb",
+                        "uid": "dff7v8js3usqoa"
+                    },
+                    "query": "import \"date\"\r\n\r\nstopTime = date.truncate(t: now(), unit: 1m)\r\nstartTime = date.add(d: -11m, to: stopTime)\r\n\r\nfrom(bucket: \"warehouse\")\r\n  |> range(start: startTime, stop: stopTime)\r\n  |> filter(fn: (r) => r._measurement == \"ping_metrics\")\r\n  |> filter(fn: (r) => r.device == \"${Devices_5}\")\r\n  |> filter(fn: (r) => r._field == \"ms\")\r\n  |> aggregateWindow(every: 1m, fn: last, createEmpty: true)\r\n  |> fill(value: 0.0)\r\n  // Drop ALL tags (device, host, etc.) so only _time and _value remain\r\n  |> drop(columns: [\"_measurement\", \"device\", \"host\", \"_field\", \"group\", \"ip\", \"location\", \"status\", \"_start\", \"_stop\"]) \r\n  |> group() \r\n  |> tail(n: 10)\r\n  |> yield(name: \"history_data\")",
+                    "refId": "A"
+                }
+            ],
+            "title": "",
+            "transparent": true,
+            "type": "status-history"
+        }
+    ],
+    "preload": false,
+    "refresh": "5s",
+    "schemaVersion": 42,
+    "tags": [],
+    "templating": {
+        "list": [
+            {
+                "allowCustomValue": false,
+                "current": {
+                    "text": "All",
+                    "value": [
+                        "$__all"
+                    ]
+                },
+                "datasource": {
+                    "type": "influxdb",
+                    "uid": "dff7v8js3usqoa"
+                },
+                "definition": "import \"influxdata/influxdb/schema\"\r\n\r\nschema.tagValues(\r\n  bucket: \"warehouse\",\r\n  tag: \"device\",\r\n  predicate: (r) =>\r\n    r._measurement == \"ping_metrics\" and\r\n    r.group == \"1 Scanners\"\r\n)",
+                "hide": 2,
+                "includeAll": true,
+                "multi": true,
+                "name": "Devices_1",
+                "options": [],
+                "query": {
+                    "query": "import \"influxdata/influxdb/schema\"\r\n\r\nschema.tagValues(\r\n  bucket: \"warehouse\",\r\n  tag: \"device\",\r\n  predicate: (r) =>\r\n    r._measurement == \"ping_metrics\" and\r\n    r.group == \"1 Scanners\"\r\n)"
+                },
+                "refresh": 1,
+                "type": "query"
+            },
+            {
+                "allowCustomValue": false,
+                "current": {
+                    "text": "All",
+                    "value": [
+                        "$__all"
+                    ]
+                },
+                "datasource": {
+                    "type": "influxdb",
+                    "uid": "dff7v8js3usqoa"
+                },
+                "definition": "import \"influxdata/influxdb/schema\"\r\n\r\nschema.tagValues(\r\n  bucket: \"warehouse\",\r\n  tag: \"device\",\r\n  predicate: (r) =>\r\n    r._measurement == \"ping_metrics\" and\r\n    r.group == \"2 Labelers\"\r\n)",
+                "hide": 2,
+                "includeAll": true,
+                "multi": true,
+                "name": "Devices_2",
+                "options": [],
+                "query": {
+                    "query": "import \"influxdata/influxdb/schema\"\r\n\r\nschema.tagValues(\r\n  bucket: \"warehouse\",\r\n  tag: \"device\",\r\n  predicate: (r) =>\r\n    r._measurement == \"ping_metrics\" and\r\n    r.group == \"2 Labelers\"\r\n)"
+                },
+                "refresh": 1,
+                "type": "query"
+            },
+            {
+                "allowCustomValue": false,
+                "current": {
+                    "text": "All",
+                    "value": [
+                        "$__all"
+                    ]
+                },
+                "datasource": {
+                    "type": "influxdb",
+                    "uid": "dff7v8js3usqoa"
+                },
+                "definition": "import \"influxdata/influxdb/schema\"\r\n\r\nschema.tagValues(\r\n  bucket: \"warehouse\",\r\n  tag: \"device\",\r\n  predicate: (r) =>\r\n    r._measurement == \"ping_metrics\" and\r\n    r.group == \"3 Printers\"\r\n)",
+                "description": "",
+                "hide": 2,
+                "includeAll": true,
+                "multi": true,
+                "name": "Devices_3",
+                "options": [],
+                "query": {
+                    "query": "import \"influxdata/influxdb/schema\"\r\n\r\nschema.tagValues(\r\n  bucket: \"warehouse\",\r\n  tag: \"device\",\r\n  predicate: (r) =>\r\n    r._measurement == \"ping_metrics\" and\r\n    r.group == \"3 Printers\"\r\n)"
+                },
+                "refresh": 1,
+                "type": "query"
+            },
+            {
+                "allowCustomValue": false,
+                "current": {
+                    "text": "All",
+                    "value": "$__all"
+                },
+                "datasource": {
+                    "type": "influxdb",
+                    "uid": "dff7v8js3usqoa"
+                },
+                "definition": "import \"influxdata/influxdb/schema\"\r\n\r\nschema.tagValues(\r\n  bucket: \"warehouse\",\r\n  tag: \"device\",\r\n  predicate: (r) =>\r\n    r._measurement == \"ping_metrics\" and\r\n    r.group == \"4 Infrastructure\"\r\n)",
+                "hide": 2,
+                "includeAll": true,
+                "multi": true,
+                "name": "Devices_4",
+                "options": [],
+                "query": {
+                    "query": "import \"influxdata/influxdb/schema\"\r\n\r\nschema.tagValues(\r\n  bucket: \"warehouse\",\r\n  tag: \"device\",\r\n  predicate: (r) =>\r\n    r._measurement == \"ping_metrics\" and\r\n    r.group == \"4 Infrastructure\"\r\n)"
+                },
+                "refresh": 1,
+                "type": "query"
+            },
+            {
+                "allowCustomValue": false,
+                "current": {
+                    "text": "All",
+                    "value": [
+                        "$__all"
+                    ]
+                },
+                "datasource": {
+                    "type": "influxdb",
+                    "uid": "dff7v8js3usqoa"
+                },
+                "definition": "import \"influxdata/influxdb/schema\"\r\n\r\nschema.tagValues(\r\n  bucket: \"warehouse\",\r\n  tag: \"device\",\r\n  predicate: (r) =>\r\n    r._measurement == \"ping_metrics\" and\r\n    r.group == \"5 Cloud\"\r\n)",
+                "hide": 2,
+                "includeAll": true,
+                "multi": true,
+                "name": "Devices_5",
+                "options": [],
+                "query": {
+                    "query": "import \"influxdata/influxdb/schema\"\r\n\r\nschema.tagValues(\r\n  bucket: \"warehouse\",\r\n  tag: \"device\",\r\n  predicate: (r) =>\r\n    r._measurement == \"ping_metrics\" and\r\n    r.group == \"5 Cloud\"\r\n)"
+                },
+                "refresh": 1,
+                "type": "query"
+            }
+        ]
+    },
+    "time": {
+        "from": "now-10m",
+        "to": "now"
+    },
+    "timepicker": {
+        "hidden": true
+    },
+    "timezone": "",
+    "title": "xPinger",
+    "uid": "xpinger",
+    "version": 8
+}

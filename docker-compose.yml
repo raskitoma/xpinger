@@ -1,0 +1,63 @@
+services:
+  xpinger:
+    build: .
+    container_name: xpinger
+    restart: always
+    hostname: xpinger
+    depends_on:
+      - influxdb
+    environment:
+      - PING_TRIGGER=5 # seconds
+      - PING_PACKETS=5
+      - PING_INTERVAL=0.5
+      - PING_PARALLEL=5 # 1=sequential, more than 1 = parallel
+      - PING_TIMEOUT=2 # seconds
+      - INFLUXDB_URL=http://influxdb:8086
+      - INFLUXDB_TOKEN=${INFLUXDB_API_TOKEN:-my-super-secret-auth-token}
+      - INFLUXDB_ORG=${INFLUXDB_ORG:-xpinger}
+      - INFLUXDB_BUCKET=${INFLUXDB_BUCKET:-warehouse}
+      - DRYRUN=false
+    volumes:
+      - ./devices.csv:/app/devices.csv:ro
+
+  influxdb:
+    image: influxdb:2
+    container_name: xpinger_influxdb
+    restart: always
+    ports:
+      - "8086:8086"
+    environment:
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_USERNAME=${INFLUXDB_USERNAME:-admin}
+      - DOCKER_INFLUXDB_INIT_PASSWORD=${INFLUXDB_PASSWORD:-admin12345}
+      - DOCKER_INFLUXDB_INIT_ORG=${INFLUXDB_ORG:-xpinger}
+      - DOCKER_INFLUXDB_INIT_BUCKET=${INFLUXDB_BUCKET:-warehouse}
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=${INFLUXDB_API_TOKEN:-my-super-secret-auth-token}
+    volumes:
+      - influxdb-data:/var/lib/influxdb2
+      - influxdb-config:/etc/influxdb2
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: xpinger_grafana
+    restart: always
+    ports:
+      - "${GRAFANA_PORT:-3000}:3000"
+    depends_on:
+      - influxdb
+    environment:
+      - GF_SECURITY_ADMIN_USER=${GRAFANA_USER:-admin}
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD:-admin12345}
+      - INFLUXDB_API_TOKEN=${INFLUXDB_API_TOKEN:-my-super-secret-auth-token}
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Viewer
+      - GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH=/var/lib/grafana/dashboards/xpinger.json
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./xpingerTemplates:/var/lib/grafana/dashboards
+      - ./grafana-provisioning:/etc/grafana/provisioning
+
+volumes:
+  influxdb-data:
+  influxdb-config:
+  grafana-data:
