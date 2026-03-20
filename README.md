@@ -40,9 +40,16 @@ The entire stack is fully pre-configured! To start monitoring your devices, simp
    - `INFLUXDB_USERNAME` / `INFLUXDB_PASSWORD` (Default: `admin` / `admin12345`)
    - `GRAFANA_USER` / `GRAFANA_PASSWORD` (Default: `admin` / `admin12345`)
    
-   If you change any configuration, just re-run `bash deploy.sh`.
+4. **Updating or Deleting the Deployment**:
+   If you ever modify `devices.csv`, customize your `.env` file, or want to tear down the stack, simply re-run the script:
+   ```bash
+   bash deploy.sh
+   ```
+   The script will detect your existing configuration and prompt you with:
+   - **[u] Update deployment**: Applies your changes and restarts the containers without wiping your data.
+   - **[d] Delete deployment**: Safely stops all containers, permanently deletes all InfluxDB/Grafana database volumes, and removes the `.env` file. (WARNING: This destroys all historical data).
 
-4. **Access the Web Interfaces**:
+5. **Access the Web Interfaces**:
    - **Grafana**: Available at `http://localhost:3000` (or the custom port you defined).
    - *Note: InfluxDB is intentionally unexposed to the host operating system so it stays securely isolated between your background pinging script and the Grafana instance.*
 

@@ -9,6 +9,6 @@ datasources:
     jsonData:
       version: Flux
       organization: ${INFLUXDB_ORG:-xpinger}
-      defaultBucket: ${INFLUXDB_BUCKET:-warehouse}
+      defaultBucket: ${INFLUXDB_BUCKET:-xpinger}
     secureJsonData:
-      token: $INFLUXDB_API_TOKEN
+      token: ${INFLUXDB_API_TOKEN}

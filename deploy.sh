@@ -1,8 +1,39 @@
 #!/bin/bash
 
-# Ensure .env file exists
-if [ ! -f .env ]; then
-    echo "Creating .env file..."
+# Check if .env file exists to determine if this is an update or fresh install
+if [ -f .env ]; then
+    echo "An existing deployment configuration (.env) was found."
+    while true; do
+        echo "Options:"
+        echo "  [u] Update deployment (Apply changes to devices.csv or .env, and restart containers)"
+        echo "  [d] Delete deployment (Stop containers, securely wipe database volumes, and remove .env)"
+        read -p "Select an option [u/d]: " choice
+        case "$choice" in
+            [uU]* ) 
+                echo "Proceeding with update..."
+                break
+                ;;
+            [dD]* ) 
+                echo "WARNING: This will permanently destroy all data in InfluxDB and Grafana!"
+                read -p "Are you absolutely sure you want to proceed? [y/N]: " confirm
+                if [[ "$confirm" =~ ^[yY] ]]; then
+                    echo "Deleting deployment..."
+                    docker-compose down -v
+                    rm -f .env
+                    echo "Deployment and configuration completely deleted. You can start fresh by running bash deploy.sh again."
+                    exit 0
+                else
+                    echo "Aborted deletion. Exiting."
+                    exit 0
+                fi
+                ;;
+            * ) 
+                echo "Invalid selection. Please answer 'u' or 'd'."
+                ;;
+        esac
+    done
+else
+    echo "No existing configuration found. Proceeding with initial setup..."
     touch .env
 fi
 
@@ -65,7 +96,7 @@ fi
 
 if ! grep -q "^INFLUXDB_USERNAME=" .env; then echo "INFLUXDB_USERNAME=admin" >> .env; fi
 if ! grep -q "^INFLUXDB_PASSWORD=" .env; then echo "INFLUXDB_PASSWORD=admin12345" >> .env; fi
-if ! grep -q "^INFLUXDB_BUCKET=" .env; then echo "INFLUXDB_BUCKET=warehouse" >> .env; fi
+if ! grep -q "^INFLUXDB_BUCKET=" .env; then echo "INFLUXDB_BUCKET=xpinger" >> .env; fi
 if ! grep -q "^INFLUXDB_ORG=" .env; then echo "INFLUXDB_ORG=xpinger" >> .env; fi
 if ! grep -q "^GRAFANA_USER=" .env; then echo "GRAFANA_USER=admin" >> .env; fi
 if ! grep -q "^GRAFANA_PASSWORD=" .env; then echo "GRAFANA_PASSWORD=admin12345" >> .env; fi

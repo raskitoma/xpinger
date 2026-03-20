@@ -15,7 +15,7 @@ services:
       - INFLUXDB_URL=http://influxdb:8086
       - INFLUXDB_TOKEN=${INFLUXDB_API_TOKEN:-my-super-secret-auth-token}
       - INFLUXDB_ORG=${INFLUXDB_ORG:-xpinger}
-      - INFLUXDB_BUCKET=${INFLUXDB_BUCKET:-warehouse}
+      - INFLUXDB_BUCKET=${INFLUXDB_BUCKET:-xpinger}
       - DRYRUN=false
     volumes:
       - ./devices.csv:/app/devices.csv:ro
@@ -29,7 +29,7 @@ services:
       - DOCKER_INFLUXDB_INIT_USERNAME=${INFLUXDB_USERNAME:-admin}
       - DOCKER_INFLUXDB_INIT_PASSWORD=${INFLUXDB_PASSWORD:-admin12345}
       - DOCKER_INFLUXDB_INIT_ORG=${INFLUXDB_ORG:-xpinger}
-      - DOCKER_INFLUXDB_INIT_BUCKET=${INFLUXDB_BUCKET:-warehouse}
+      - DOCKER_INFLUXDB_INIT_BUCKET=${INFLUXDB_BUCKET:-xpinger}
       - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=${INFLUXDB_API_TOKEN:-my-super-secret-auth-token}
     volumes:
       - influxdb-data:/var/lib/influxdb2
